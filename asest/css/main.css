@@ -1,0 +1,2053 @@
+/* الأساسيات */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #333;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  /* تأكد من أن صفحة HTML كاملة تأخذ مساحة ارتفاع الشاشة */
+}
+
+main {
+  min-height: 1000vh;
+  /* تعيين الحد الأدنى للارتفاع ليكون حجم الشاشة */
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  /* يمكنك تحديد عرض ثابت أو عرض نسبة */
+  margin: 0 auto;
+  /* جعل المحتوى في المنتصف */
+  padding: 0px;
+  /* المسافة من اليمين واليسار */
+}
+/*navbar*/
+.navbar-container {
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 10px 20px;
+}
+
+
+/* Logo Styling */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  /* جعل الشعار في موضع ثابت */
+}
+
+/* العنصر الأب .address */
+.address {
+  display: flex;
+  flex-direction: column;
+  /* ترتيب العناصر تحت بعضها */
+  gap: 1px;
+  /* المسافة بين الروابط */
+}
+
+/* الرابط الأول */
+.address a:nth-child(1) {
+  color: #FFD700;
+  /* اللون الذهبي */
+  font-size: 28px;
+  /* حجم الخط للرابط الأول */
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* الرابط الثاني */
+.address a:nth-child(2) {
+  color: #FFD700;
+  /* اللون الذهبي */
+  font-size: 14px;
+  /* حجم الخط للرابط الثاني */
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* تأثير عند التمرير بالماوس على الروابط */
+.address a:hover {
+  color: #ffcc00;
+  /* تغيير اللون عند التمرير */
+  font-size: 28px;
+  /* زيادة حجم الخط */
+}
+
+/* إضافة مركزية العناصر */
+.navbar {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: space-between;
+  /*يجعل العناصر في الوسط */
+}
+
+/* Menu Items (Home, Blog, etc.) */
+.menu-items {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.menu-items li a {
+  text-decoration: none;
+  color: #c7d3df;
+  padding: 8px 12px;
+  font-size: 1em;
+}
+
+.menu-items li a:hover {
+  color: #ffcc00;
+}
+
+
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+}
+
+.navbar ul li {
+  position: relative;
+  margin-right: 20px;
+}
+
+.navbar a {
+  color: #fff;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.navbar ul ul {
+  display: none;
+  /* إخفاء القوائم الفرعية مبدئيًا */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #020202;
+  min-width: 150px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  /* أعلى من القسم */
+
+}
+
+.navbar ul li:hover ul {
+  display: block;
+
+}
+
+.navbar ul ul li {
+  width: 100%;
+}
+
+.navbar ul ul li a {
+  padding: 10px;
+  color: #fff;
+  display: block;
+}
+
+.navbar ul ul li a:hover {
+  background-color: #ffcc00;
+  color: #020202;
+}
+
+.navbar ul ul li:hover ul {
+  display: block;
+}
+
+/* Basic Icon Styles */
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.icon {
+  position: relative;
+  cursor: pointer;
+  font-size: 1.5em;
+  color: #f9f7f7;
+}
+
+/* تغيير اللون والحجم عند التمرير بالماوس */
+.icon:hover {
+  color: #FFD700;
+  /* اللون الذهبي */
+  transform: scale(1.2);
+  /* زيادة الحجم عند التمرير */
+}
+
+.icon span#cartCounter {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  font-size: 0.7em;
+  padding: 2px 5px;
+  border-radius: 50%;
+}
+
+/* Tooltip Styling */
+.tooltip {
+  display: none;
+  position: absolute;
+  bottom: -25px;
+  background-color: #FFD700;
+  color: #0f0f0f;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 0.8em;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.icon:hover .tooltip {
+  display: block;
+}
+
+/* Modal Styling */
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  background: #070707;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(238, 236, 123, 0.3);
+  text-align: center;
+}
+
+.modal input {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.close-btn,
+.search-btn {
+  font-size: 1.2em;
+  color: #FFD700;
+  margin-left: 10px;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #0a0a0a;
+  box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+/* Modal & Sidebar (Optional) */
+.modal,
+.sidebar {
+  display: none;
+}
+
+.sidebar input {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* Shopping Cart Counter */
+.cart-icon span {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background: #ff0000;
+  color: #070707;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-size: 0.8em;
+
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  align-items: center;
+  max-width: 1200px;
+  /* الحد الأقصى للعرض */
+  text-align: center;
+  /* لتوسيط النص داخل القسم */
+  margin: 0 auto;
+  /* تأكد من أن المسافة بين القسم والجوانب متساوية */
+
+}
+
+.left-content {
+  color: white;
+  flex-direction: column;
+  gap: 20px;
+  background: #333;
+}
+
+.left-content h2 {
+  font-size: 70px;
+  align-items: flex-start;
+
+}
+
+.left-content p {
+  font-size: 16px;
+}
+
+.left-content button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #FFD700;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  width: 200px;
+  margin-bottom: 5px;
+  /* المسافة بين النصوص والأزرار */
+
+}
+
+.right-content {
+  width: 50%;
+  position: relative;
+}
+
+.right-content img {
+  width: 100%;
+  height: auto;
+}
+
+/* Optional: For smooth image transitions */
+.image-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Make image transition smooth */
+.image-container img {
+  transition: opacity 1s ease-in-out;
+}
+
+.new-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  /* مسافة بين الأجزاء */
+  padding: 50px 20px;
+  width: 80%;
+  max-width: 1200px;
+  background: #0f0f0f;
+  margin: 20px auto;
+  border-radius: 10px;
+}
+
+.content-box {
+  position: relative;
+  width: calc(25% - 20px);
+  /* عرض كل جزء ليغطي ربع القسم */
+  overflow: hidden;
+  border-radius: 10px;
+  background: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  /* تجعل الصورة تبدأ من الأعلى */
+  gap: 10px;
+  /* مسافة بين الصورة والنص */
+  transition: transform 0.3s ease;
+  /* تأثير التكبير عند التمرير */
+  min-height: 300px;
+  /* تعيين حد أدنى للطول */
+  height: 100%;
+  /* ضبط الطول تلقائيًا */
+}
+
+.content-box img {
+  width: 100px;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.content-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 215, 0, 0);
+  /* شفاف مبدئيًا */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #f2ecec;
+  opacity: 1;
+  transition: background-color 0.3s ease;
+  z-index: 1;
+}
+
+.content-overlay h4,
+.content-overlay p {
+  margin: 5px 0;
+  text-align: center;
+}
+
+/* div3*/
+/* تنسيق القسم الرئيسي */
+.main-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.left-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 45%;
+  padding: 20px;
+}
+
+.left-element {
+  text-align: center;
+  padding: 20px;
+}
+
+.icon-element {
+  background-color: #4b4b4b;
+  /* خلفية رمادية للأيقونات */
+}
+
+.icon-element i {
+  font-size: 40px;
+  color: #FFD700;
+}
+
+.left-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #fdfafa;
+  margin: 10px 0;
+}
+
+.left-text {
+  font-size: 14px;
+  color: #fef9f9;
+}
+
+/* تنسيق الجزئين الذين يحتويان على صور */
+.image-element {
+  background-color: transparent;
+  text-align: center;
+}
+
+.image-element img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  /* للتأكد من أن الصورة تغطي العنصر بشكل كامل */
+}
+
+/* الجزء الأيمن */
+.right-panel {
+  width: 55%;
+}
+
+.right-image-box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-image-box img {
+  width: 100%;
+  height: auto;
+}
+
+.overlay-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: rgb(246, 242, 242);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.overlay-box h2,
+.overlay-box p {
+  margin: 10px 0;
+}
+
+/* تنسيق الزر */
+button {
+  background-color: #FFD700;
+  /* خلفية ذهبية */
+  color: black;
+  /* النص باللون الأسود */
+  border: 2px solid #FFD700;
+  /* حواف ذهبية */
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* عند التأشير بالماوس */
+button:hover {
+  background-color: transparent;
+  /* خلفية شفافة */
+  color: #FFD700;
+  /* النص يصبح باللون الذهبي */
+  border-color: #FFD700;
+  /* حواف الزر تصبح ذهبية */
+}
+
+/* تنسيق الزر عند عدم التأشير بالماوس */
+button:focus {
+  outline: none;
+  /* إزالة الإطار الذي يظهر عند الضغط على الزر */
+}
+
+
+/* زر العودة لأعلى */
+/* تنسيق الزر "back to top" */
+.back-to-top-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  /* إخفاء الزر بشكل افتراضي */
+  align-items: center;
+  justify-content: center;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 15px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+  z-index: 1000;
+}
+
+.back-to-top-button i {
+  margin-right: 10px;
+  /* المسافة بين الأيقونة والنص */
+}
+
+.back-to-top-button:hover {
+  background-color: #FFD700;
+  color: #020202;
+}
+
+.back-to-top-button:focus {
+  outline: none;
+}
+
+.back-to-top-button span {
+  font-size: 16px;
+}
+
+/* view more */
+/* تخصيص الـ custom-section */
+.custom-section {
+  text-align: center;
+  padding: 40px 0;
+  color: #fdfafa;
+}
+
+/* صف الخط المتقطع مع الأيقونة */
+.line-with-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.line-with-icon .line {
+  width: 50px;
+  height: 2px;
+  background-color: rgb(244, 239, 239);
+}
+
+.line-with-icon i {
+  margin: 0 10px;
+  font-size: 30px;
+}
+
+/* فقرة Avail Our Offers */
+.offer-text {
+  font-size: 16px;
+  font-family: 'Arial', sans-serif;
+  margin-top: 10px;
+}
+
+/* عنوان Trending Collection */
+.trending-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+/* قسم Explore more */
+.explore-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  cursor: pointer;
+
+}
+
+.explore-more i {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.explore-more-text {
+  font-size: 18px;
+  color: gold;
+  transition: color 0.3s ease;
+}
+
+.explore-more-text:hover {
+  color: gold;
+}
+
+/*div image & price */
+/* تنسيق الحاوية للصورة */
+.custom-section-2 {
+  width: 90%;
+  /* عرض أقل من 100% لترك فراغ على الجانبين */
+  margin: 0 auto;
+  /* جعل القسم في المنتصف */
+  display: flex;
+  justify-content: center;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  /* ضمان التفاف العناصر إذا كانت النافذة أصغر */
+  justify-content: space-between;
+  /* توزيع الأجزاء بالتساوي */
+}
+
+.part {
+  position: relative;
+  width: 22%;
+  /* عرض جزء لكل قسم بجانب الآخر */
+  margin: 10px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* تنسيق الصورة */
+.part-image {
+  width: 100%;
+  height: 200px;
+  /* تحديد ارتفاع الصورة */
+  object-fit: cover;
+  /* لتغطية المساحة المخصصة للصورة */
+  border-radius: 10px;
+}
+
+/* تنسيق الأيقونات */
+.icons-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.icons-container i {
+  color: white;
+  font-size: 20px;
+}
+
+.icons-container i:hover {
+  background-color: gold;
+  color: black;
+}
+
+/* زر فوق الصورة */
+.buy-button {
+  position: absolute;
+  top: 160px;
+  right: 10px;
+  padding: 5px 10px;
+  background-color: #808080;
+  /* اللون الرمادي */
+  color: white;
+  border: 2px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.buy-button:hover {
+  background-color: gold;
+  color: black;
+}
+
+/* العنوان أسفل الصورة */
+.part-title {
+  color: white;
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+/* الفقرة أسفل العنوان */
+.part-description {
+  color: white;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* السعر أسفل الفقرة */
+.part-price {
+  color: white;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+/* تنسيق السعر القديم */
+.old-price {
+  color: #ccc;
+  /* لون رمادي ليكون مختلفًا عن السعر الجديد */
+  font-size: 16px;
+  text-decoration: line-through;
+  /* خط مشطوب */
+  margin-top: 2px;
+}
+
+/* image & cover */
+/* تنسيقات القسم */
+/* تنسيق القسم */
+/* تنسيق القسم */
+.custom-section-3 {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  /* عرض كامل الشاشة */
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* تنسيق العنصر الفردي للصور */
+.gallery-box {
+  position: relative;
+  width: 25%;
+  /* تقسيم كل صورة إلى 25% لتتناسب مع 4 صور */
+  height: 400px;
+  /* يمكنك تعديل الارتفاع حسب رغبتك */
+  overflow: hidden;
+}
+
+.gallery-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* ملء الصورة بالحاوية دون تشويه */
+}
+
+/* تنسيق العنوان */
+.image-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  pointer-events: none;
+  /* تجاهل الإشارات عند التأشير على النص */
+  opacity: 1;
+  transition: color 0.3s;
+}
+
+/* زر "View Products" */
+.view-button {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  border: 1px solid gold;
+  padding: 8px 20px;
+  background: transparent;
+  font-weight: bold;
+  font-size: 10px;
+  cursor: pointer;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+/* تدرج لوني عند التأشير */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 215, 0, 0.8);
+  /* لون ذهبي شبه شفاف */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* النص الوصفي و "Buy Now" عند التأشير */
+.image-description,
+.buy-now-container {
+  position: absolute;
+  color: black;
+  font-size: 0.9em;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.image-description {
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.buy-now-container {
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+}
+
+/* تفعيل التغطية الذهبية عند التأشير */
+.gallery-box:hover .overlay {
+  opacity: 1;
+}
+
+.gallery-box:hover .image-title {
+  color: black;
+  /* تغير لون العنوان */
+}
+
+.gallery-box:hover .view-button {
+  color: black;
+  border-color: black;
+}
+
+.gallery-box:hover .image-description,
+.gallery-box:hover .buy-now-container {
+  opacity: 1;
+  /* ظهور النصوص عند التأشير */
+}
+
+/* shop now*/
+/* shop now*/
+/* تنسيق القسم بدون فراغات على الطرفين */
+
+.shop-custom-section-4 {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  
+}
+
+/* الجزء الذي يحتوي على النص */
+.shop-text-box {
+  width: 50%;
+  height: 100%;
+  /* عرض النص نصف الشاشة */
+  background-color: black;
+  /* خلفية سوداء للنص */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+/* الحاوية العامة */
+.shop-section-box {
+  width: 100%;
+  display: flex;
+  flex-direction: row; /* العناصر تكون بجانب بعضها */
+  align-items: center;
+  gap: 0px; /* مسافة بين النص والصورة */
+}
+
+/* الجزء الذي يحتوي على الصورة */
+.shop-image-box {
+  width: 50%;
+  /* عرض الصورة نصف الشاشة */
+  display: flex;
+  justify-content: center;
+  /* محاذاة الصورة في المنتصف */
+  align-items: center;
+  /* محاذاة الصورة عموديًا في المنتصف */
+}
+
+.shop-side-image {
+  width: 100%;
+  /* الصورة ستأخذ كامل عرض الجزء المخصص لها */
+  height: 100%;
+  object-fit: cover;
+  /* لضمان ملء الصورة بالكامل */
+}
+
+/* تنسيق النصوص */
+.shop-small-text {
+  font-size: 10px;
+  margin-bottom: 10px;
+}
+
+.shop-main-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.shop-description-text {
+  font-size: 8px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+/* تنسيق الزر */
+.shop-cta-button {
+  background-color: gold;
+  color: black;
+  padding: 10px 20px;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  align-self: center;
+  /* محاذاة الزر في الوسط */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.shop-cta-button:hover {
+  background-color: rgba(255, 215, 0, 0.6);
+  /* ذهبي باهت عند التمرير */
+  color: white;
+  /* النص يصبح أبيض */
+}
+
+/*jewelery list */
+/* الحاوية الرئيسية */
+.shop-gallery-show-forUser {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 10px;
+}
+
+/* الصور */
+.shop-images-container-show-forUser {
+  display: flex;
+  overflow: hidden;
+  width: 60%;
+  gap: 10px;
+}
+
+.shop-image-show-forUser {
+  width: 200px;
+  height: 200px;
+  display: none;
+}
+
+/* السهمين */
+.arrow-container-show-forUser {
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+.arrow-left-show-forUser,
+.arrow-right-show-forUser {
+  background: none;
+  border: none;
+  outline: none;
+}
+
+/* الفقرة الجانبية */
+.side-content-container-show-forUser {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.buy-now-title-show {
+  font-size: 10px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.bestselling-title-show {
+  font-size: 30px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.description-text-show {
+  color: white;
+  margin-bottom: 20px;
+}
+
+.shop-now-button-show {
+  background-color: gold;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.shop-now-button-show:hover {
+  background-color: #ffd700;
+  color: white;
+}
+
+.side-image-show {
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* up dont work */
+/*our gatogary*/
+/* تنسيق القسم العام */
+.ourGatogery-categories-section {
+  max-width: 1000px; /* العرض الأقصى للقسم */
+  margin: 0 auto; /* توزيع الفراغ تلقائيًا على الطرفين */
+  padding: 40px 20px;
+  background-color: #333;
+}
+
+.ourGatogery-category-info {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.ourGatogery-small-text {
+  font-size: 14px;
+  color: #f9f7f7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.ourGatogery-big-text {
+  font-size: 36px;
+  color: #f7f2f2;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* تنسيق صف الأيقونات */
+.ourGatogery-icons-row {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+/* تنسيق الأيقونات مع خلفية شفافة */
+.ourGatogery-icon-wrapper {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background-color: transparent; /* خلفية شفافة */
+  transition: background-color 0.3s ease; /* تأثير الانتقال للخلفية */
+}
+
+.ourGatogery-icon-wrapper:hover {
+  background-color: #ffd700; /* خلفية ذهبية عند التأشير */
+}
+
+.ourGatogery-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 0.3s ease; /* تأثير على التعتيم عند التأشير */
+}
+
+.ourGatogery-icon-wrapper:hover .ourGatogery-icon {
+  opacity: 0.8; /* تعتيم الصورة عند التأشير */
+}
+
+
+/* تنسيق صف المنتجات */
+.ourGatogery-products-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.ourGatogery-card {
+  width: 22%;
+  background-color: #333;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+}
+
+.ourGatogery-product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.ourGatogery-icons-column {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ourGatogery-icon {
+  font-size: 20px;
+  color: rgb(13, 13, 13);
+  transition: color 0.3s ease;
+}
+
+.ourGatogery-icon:hover {
+  color: gold;
+}
+
+/* تنسيق النجوم الذهبية */
+.ourGatogery-stars {
+  margin-top: 15px;
+}
+
+.ourGatogery-star {
+  color: #ffcc00;
+  font-size: 18px;
+}
+
+/* الزر العلوي لنوع المجوهرات */
+.ourGatogery-jewelry-button {
+  padding: 10px 20px; /* إضافة مساحة داخل الزر */
+  font-size: 16px; /* حجم الخط */
+  background-color: transparent; /* خلفية شفافة */
+  color: #fff; /* لون النص باللون الأبيض */
+  border: 2px solid #fff; /* إضافة الحافة البيضاء */
+  border-radius: 5px; /* حواف دائرية للزر */
+  transition: all 0.3s ease; /* تأثير الانتقال على جميع الخصائص */
+  cursor: pointer; /* تغيير المؤشر عند التأشير على الزر */
+
+}
+
+.ourGatogery-jewelry-button:hover {
+  background-color: #ffcc00;
+  color: black;
+}
+
+/* تنسيق العنوان */
+.ourGatogery-product-title {
+  font-size: 18px;
+  color: #f7eeee;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* تنسيق السعر */
+.ourGatogery-product-price {
+  font-size: 16px;
+  color: #f9f6f6;
+  margin-top: 5px;
+}
+
+/*handpacket*/
+/* الخط مع الجوهرة */
+
+.new-collection-section {
+  max-width: 1000px; /* العرض الأقصى للقسم */
+  margin: 0 auto; /* توزيع الفراغ تلقائيًا على الطرفين */
+  padding: 0 20px; /* إضافة فراغ داخلي إضافي */
+}
+
+.line-with-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.line {
+  width: 50px;
+  height: 2px;
+  background-color: white;
+  flex: 1;
+  
+}
+
+.gem-icon {
+  color: white;
+  font-size: 24px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 15px;
+}
+
+/* العناوين */
+.new-collection-header .new-collection-small-title {
+  font-size: 10px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+
+.new-collection-header .new-collection-big-title {
+  font-size: 36px;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 40px ;
+  margin: 0;
+}
+
+/* الصف ذو الثلاثة أعمدة */
+.new-collection-row {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  padding-bottom: 40px ;
+}
+
+.new-collection-item {
+  flex: 1;
+  background-color: black;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+
+.new-collection-item-image {
+  width: 100%;
+  height: 50%;
+  margin-bottom: 15px;
+}
+
+.new-collection-item-icon {
+  width: 30px;
+  margin-bottom: 10px;
+}
+
+.new-collection-item-title {
+  font-size: 28px;
+  color: white;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+
+.new-collection-item-title:hover{
+  color: gold;
+
+}
+.new-collection-item-description {
+  font-size: 10px;
+  color: white;
+}
+
+
+/*our product */
+/* تخصيص الـ ourProduct-custom-section */
+.ourProduct-custom-section {
+  max-width: 1000px; /* العرض الأقصى للقسم */
+  margin: 0 auto; /* توزيع الفراغ تلقائيًا على الطرفين */
+  padding: 40px 20px; /* إضافة فراغ داخلي إضافي */
+  text-align: center;
+  color: #fdfafa;
+}
+
+/* صف الخط المتقطع مع الأيقونة */
+.ourProduct-line-with-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.ourProduct-line-with-icon .ourProduct-line {
+  width: 50px;
+  height: 2px;
+  background-color: rgb(249, 245, 245);
+}
+
+.ourProduct-line-with-icon i {
+  margin: 0 10px;
+  font-size: 30px;
+}
+
+/* فقرة Avail Our Offers */
+.ourProduct-offer-text {
+  font-size: 16px;
+  font-family: 'Arial', sans-serif;
+  margin-top: 10px;
+}
+
+/* عنوان Trending Collection */
+.ourProduct-trending-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+/* قسم View more */
+.ourProduct-view-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.ourProduct-view-more i {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.ourProduct-view-more-text {
+  font-size: 18px;
+  color: gold;
+  transition: color 0.3s ease;
+}
+
+.ourProduct-view-more-text:hover {
+  color: gold;
+}
+
+/* قسم الصور والأسعار */
+/* تنسيق الحاوية للصورة */
+.ourProduct-custom-section-2 {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.ourProduct-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* تنسيق الأجزاء */
+.ourProduct-part {
+  position: relative;
+  width: 22%;
+  margin: 10px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* تنسيق الصورة */
+.ourProduct-part-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* تنسيق الأيقونات */
+.ourProduct-icons-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.ourProduct-icons-container i {
+  color: white;
+  font-size: 20px;
+}
+
+.ourProduct-icons-container i:hover {
+  background-color: gold;
+  color: black;
+}
+
+/* زر فوق الصورة */
+.ourProduct-buy-button {
+  position: absolute;
+  top: 160px;
+  right: 10px;
+  padding: 5px 10px;
+  background-color: #808080;
+  color: white;
+  border: 2px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.ourProduct-buy-button:hover {
+  background-color: gold;
+  color: black;
+}
+
+/* العنوان أسفل الصورة */
+.ourProduct-part-title {
+  color: white;
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+/* الفقرة أسفل العنوان */
+.ourProduct-part-description {
+  color: white;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* السعر أسفل الفقرة */
+.ourProduct-part-price {
+  color: white;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+/* تنسيق السعر القديم */
+.ourProduct-old-price {
+  color: #ccc;
+  font-size: 16px;
+  text-decoration: line-through;
+  margin-top: 2px;
+}
+
+/* sale product*/
+/* تخصيص القسم */
+.sale-custom-section {
+  height: 600px;
+  display: flex; 
+  flex-direction: column; 
+  gap: 10px; /* مسافة بين النص والصورة */
+  padding: 20px; /* فراغ داخلي حول القسم */
+  background-color: #333; /* لون الخلفية */
+  text-align: center;
+  padding: 40px 0;
+  color: #fdfafa;
+}
+
+/* صف الخط المتقطع مع الأيقونة */
+.sale-line-with-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sale-line {
+  width: 50px;
+  height: 2px;
+  background-color: #fff;
+}
+
+.sale-line-with-icon i {
+  margin: 0 10px;
+  font-size: 30px;
+  color: gold;
+}
+
+/* النصوص */
+.sale-offer-text {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.sale-trending-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+/* شبكة الصور */
+.sale-image-grid {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* عناصر الشبكة */
+.sale-item-box {
+  position: relative;
+  background-color: #000;
+  padding: 15px;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sale-item-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* النجوم الذهبية */
+.sale-stars-box {
+  position: absolute; /* لجعل النجوم فوق الصورة */
+  top: 10px; /* تحديد المسافة من أعلى الصورة */
+  left: 50%; /* وضع النجوم في منتصف الصورة */
+  transform: translateX(-50%); /* لضمان تمركز النجوم أفقياً */
+  display: flex;
+  gap: 5px; /* مسافة بين النجوم */
+  z-index: 2; /* ضمان ظهور النجوم فوق الصورة */
+  margin-top: 10px;
+  margin-left: 2px;
+}
+
+.sale-gold-star {
+  color: gold;
+  margin: 0 2px;
+  font-size: 16px;
+}
+
+/* الصور */
+.sale-image-container {
+  width: 100;
+  height: 220px;
+  position: relative;
+}
+
+.sale-image {
+  width: 100%;
+  height: 100%;
+}
+
+.sale-overlay {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.sale-text {
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+}
+
+.sale-discount-text {
+  font-size: 10px;
+  color: rgb(181, 7, 7);
+  display: block;
+  margin-top: 5px;
+}
+
+/* icon like */
+/* قسم الإحصائيات */
+/* قسم الإحصائيات */
+.stat-stats-section {
+  background-color: black;
+  height: 250px;
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+/* حاوية الأيقونات */
+.stat-icons-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px; /* المسافة بين الأيقونات */
+  flex-wrap: wrap; /* لضمان أن يتم لف الأيقونات عند تصغير الشاشة */
+}
+
+/* الصندوق الخاص بكل أيقونة */
+.stat-stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* الأيقونة */
+.stat-stat-box i {
+  font-size: 40px;
+  margin-bottom: 10px;
+  color: rgba(209, 211, 96, 0.267);
+}
+
+/* العنوان */
+.stat-stat-title {
+  font-size: 40px;
+  color: #ccc;
+  margin: 5px 0;
+}
+
+/* الوصف */
+.stat-stat-description {
+  font-size: 10px;
+  color: #ccc;
+  margin: 0;
+}
+
+/* on sale */
+/* قسم العروض الخاصة */
+.sale-custom-section-forUser {
+  padding: 0 20px; /* إضافة الفراغ على الجانبين */
+  box-sizing: border-box; /* ضمان احتساب padding ضمن الحجم الكلي للقسم */
+  background-color: black;
+  color: white;
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* خط متقطع مع الأيقونة */
+.sale-line-with-icon-forUser {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.sale-line-forUser {
+  flex: 1;
+  border-top: 1px dashed #ccc;
+}
+
+.sale-icon-forUser {
+  font-size: 40px;
+  color: gold;
+  position: absolute;
+  top: -15px;
+}
+
+/* النص تحت الخط المتقطع */
+.sale-offer-text-forUser {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* العنوان */
+.sale-trending-title-forUser {
+  font-size: 30px;
+  margin-top: 30px;
+  font-weight: bold;
+}
+
+/* صف الصور مع النجوم وكلمة Sale */
+.sale-image-grid-forUser {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+.sale-item-box-forUser {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.sale-stars-box-forUser {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.sale-gold-star-forUser {
+  color: gold;
+  font-size: 15px;
+}
+
+.sale-image-container-forUser {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+}
+
+.sale-image-forUser {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sale-overlay-forUser {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.sale-text-forUser {
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+}
+
+.sale-discount-text-forUser {
+  font-size: 14px;
+  color: white;
+}
+/* قسم الصور في الأسفل */
+.sale-image-section-forUser {
+  padding-left: 300px;
+  padding-right: 300px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  gap: 0; /* إزالة الفراغات بين الصور السفلية */
+}
+
+/* الصورة اليسرى */
+.sale-left-image-forUser {
+  width: 100%;
+  max-width: 50%;
+  height: auto;
+  margin-right: 10px; /* إضافة فراغ على الطرف الأيمن */
+}
+
+/* الصورة اليمنى */
+.sale-right-image-section-forUser {
+  width: 45%;
+}
+
+.sale-right-image-top-forUser {
+  width: 100%;
+  height: 50%; /* تقليل طول الصورة الأولى */
+  object-fit: cover;
+}
+
+.sale-right-image-bottom-forUser {
+  width: 100%;
+  height: 50%; /* تقليل طول الصورة الثانية */
+  object-fit: cover;
+  margin-top: 10px; /* إضافة فراغ بين الصورة العليا والسفلى */
+}
+
+/*least*/
+/* الحاوية الرئيسية */
+.shop-gallery-forUser {
+  margin-bottom: 50px;
+  margin-top: 100px;
+}
+
+/* العنوان الأول SHOP */
+.shop-title-forUser {
+  text-align: center;
+  color: white;
+  margin-bottom: 10px;
+}
+
+/* العنوان الثاني Latest Products */
+.latest-products-title-forUser {
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
+}
+/* الحاوية الخاصة بالصور */
+.shop-gallery-forUser {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding-left: 300px;
+  padding-right: 300px;
+}
+
+/* حاوية الصور */
+.shop-images-container-forUser {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  overflow: hidden;
+}
+
+/* الصورة */
+.shop-image-forUser {
+  width: 20%;
+  height: auto;
+  display: none; /* إخفاء الصور الأولى */
+}
+
+/* حاويات الأسهم */
+.arrow-container-forUser {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 30px;
+  color: #333;
+  background-color: rgba(240, 230, 38, 0.5);
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.arrow-left-forUser {
+  left: 0;
+}
+
+.arrow-right-forUser {
+  right: 0;
+}
+
+/*more & more product*/
+/* الحاوية الرئيسية */
+.shop-gallery-more-forUser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+
+/* العنوان "SHOP" */
+.shop-title-more-forUser {
+  font-size: 10px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+/* العنوان "Latest Products" */
+.latest-products-title-more-forUser {
+  font-size: 30px;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* حاوية الأسهم */
+.arrow-container-more-forUser {
+  display: inline-block;
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+/* السهم الأيسر */
+.arrow-left-more-forUser,
+.arrow-right-more-forUser {
+  font-size: 30px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+/* حاوية الصور */
+.shop-images-container-more-forUser {
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+/* الصور */
+.shop-image-more-forUser {
+  width: 200px; /* عرض الصور */
+  height: 200px; /* ارتفاع الصور */
+  object-fit: cover;
+  display: none; /* إخفاء الصور بشكل افتراضي */
+}
+
+/* ظهور الصور عند تحديد النطاق */
+.shop-image-more-forUser.active {
+  display: block;
+}
+
+
+/* footer*/
+  .footer{
+    flex: none;
+  width: 100%;
+  clear: both;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+
+  }
+
+  /* الصف الأول */
+  .footer-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .footer-logo-section {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .footer-logo-section a {
+    font-size: 28px;
+    color: #FFD700;
+  }
+
+  .footer-logo-section p {
+    font-size: 28px;
+    color: #FFD700;
+    ;
+  }
+
+
+  .footer-social-map {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .footer-icons {
+    display: flex;
+    gap: 10px;
+  }
+
+  .footer-icons .icon {
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    transition: 0.3s;
+  }
+
+  .footer-icons .icon:hover {
+    background-color: #FFD700;
+    color: black;
+  }
+
+  /* إعدادات الخريطة */
+  .footer-map iframe {
+    width: 200px;
+    height: 150px;
+    border-radius: 5px;
+    border: 1px solid #444;
+  }
+
+  /* الصف الثاني */
+  .footer-links-row {
+    display: flex;
+    gap: 15px;
+    justify-content: start;
+    margin-bottom: 20px;
+  }
+
+  .footer-links-row a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-links-row a:hover {
+    color: #FFD700;
+  }
+
+  /* الصف الثالث */
+  .footer-bottom-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .footer-contact-section,
+  .footer-search-section,
+  .footer-address-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .footer-contact-section i,
+  .footer-search-section i,
+  .footer-address-section i {
+    color: #FFD700;
+    font-size: 20px;
+  }
+
+  .footer-contact-section p,
+  .footer-address-section p {
+    margin: 0;
+  }
+
+  .footer-search-section input {
+    padding: 5px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #222;
+    color: white;
+  }

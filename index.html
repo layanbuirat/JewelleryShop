@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="./asest/css/main.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="navbar-container">
+                <!-- Logo -->
+                <div class="logo">
+                    <div class="icon">
+                        <i class="fa-regular fa-gem"></i>
+                    </div>
+                    <div class="address">
+                        <a href="#">LARAMISS</a>
+                        <a href="#">LUXURY PIECES</a>
+                    </div>
+
+                </div>
+
+                <!-- Navbar Menu -->
+                <nav class="navbar">
+                    <ul class="menu-items">
+                        <li><a href="#">Home</a>
+                            <ul class="dropdowm_Home">
+                                <li><a href="#">HomePage 1</a></li>
+                                <li><a href="#">HomePage 2</a></li>
+                                <li><a href="#">HomePage 3</a></li>
+                                <li><a href="#">HomePage 4</a></li>
+                                <li><a href="#">HomePage 5</a></li>
+                                <li><a href="#">HomePage 6</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="#">Blog</a>
+                            <ul class="dropdowm_Blog">
+                                <li><a href="#">Blog List</a></li>
+                                <li><a href="#">Blog Grid</a></li>
+                                <li><a href="#">Blog Details</a></li>
+                                <li><a href="#">post format</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="#">Feature</a>
+                            <ul class="dropdowm_Featurs">
+                                <li><a href="#">Blog List</a></li>
+                                <li><a href="#">Blog Grid</a></li>
+                                <li><a href="#">Blog Details</a></li>
+                                <li><a href="#">post format</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">page</a>
+                            <ul class="dropdowm_Pages">
+                                <li><a href="#">about</a></li>
+                                <li><a href="#">classification</a></li>
+                                <li><a href="#">Designer Portfolio</a>
+                                    <ul class="dropdown_DesignerPortfolio">
+                                        <li><a href="#">Portfolio</a></li>
+                                        <li><a href="#">Portfolio Details</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Gallery</a>
+                                    <ul class="dropdown_Gallery">
+                                        <li><a href="#">Gallery 1</a></li>
+                                        <li><a href="#">Gallery 2</a></li>
+                                        <li><a href="#">Gallery 3</a></li>
+                                        <li><a href="#">Gallery 4</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Our Team</a></li>
+                                <li><a href="#">404</a></li>
+                                <li><a href="#">Support</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="#">Shop</a>
+                            <ul class="dropdowm_Shope">
+                                <li><a href="#">Shope Archive</a></li>
+                                <li><a href="#">Product Details</a>
+                                    <ul class="dropdown_productDetails">
+                                        <li><a href="#">Style 1</a></li>
+                                        <li><a href="#">Style 2</a></li>
+                                        <li><a href="#">Style 3</a></li>
+                                        <li><a href="#">Style 4</a></li>
+                                    </ul>
+                            </ul>
+                        </li>
+                        <li><a href="#">Reach_out</a>
+                            <ul class="dropdown_Reach_out">
+                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Contact Us2</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+
+                    <!-- Icons Section -->
+                    <div class="icons">
+                        <!-- User Icon with Account Popup -->
+                        <div class="icon user-icon" onmouseover="showTooltip('accountTooltip')"
+                            onmouseout="hideTooltip('accountTooltip')">
+                            <i class="fa-regular fa-user"></i>
+                            <div id="accountTooltip" class="tooltip">my account</div>
+                        </div>
+
+                        <!-- Search Icon with Search Modal -->
+                        <div class="icon search-icon" onclick="toggleSearchModal()">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <div id="searchTooltip" class="tooltip">بحث</div>
+                        </div>
+
+                        <!-- Hamburger Menu Icon with Sidebar -->
+                        <div class="icon menu-icon" onclick="toggleSidebar()">
+                            <i class="fa-solid fa-bars"></i>
+                        </div>
+
+                        <!-- Shopping Cart Icon with Counter -->
+                        <div class="icon cart-icon">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span id="cartCounter">0</span>
+                        </div>
+                    </div>
+                </nav>
+
+            </div>
+    </header>
+    <!-- Search Modal -->
+    <div id="searchModal" class="modal">
+        <input type="text" placeholder="search.........?">
+        <i class="fa-solid fa-xmark close-btn" onclick="toggleSearchModal()"></i>
+        <i class="fa-solid fa-magnifying-glass search-btn"></i>
+    </div>
+
+    <!-- Sidebar for Hamburger Menu -->
+    <div id="sidebar" class="sidebar">
+        <input type="text" placeholder="search.........?">
+        <i class="fa-solid fa-xmark close-btn" onclick="toggleSidebar()"></i>
+        <i class="fa-solid fa-magnifying-glass search-btn"></i>
+    </div>
+
+    </div>
+
+
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <!-- Left Section -->
+                <div class="left-content">
+                    <p>JEWELRY DESIGN WITH LOVE</p>
+                    <h2>HIGH END JEWELRY ITEM</h2>
+                    <button onclick="buyNow()">BUY NOW</button>
+                    <button onclick="exploreNow()">EXPLORE NOW</button>
+                </div>
+
+                <!-- Right Section (Image Changing every 4 seconds) -->
+                <div class="right-content">
+                    <div class="image-container">
+                        <img id="jewelryImage" src="image1.jpg" alt="Jewelry" />
+                    </div>
+                </div>
+            </div>
+        </header>
+
+    </div>
+
+    <div class="container">
+        <div class="new-section">
+            <div class="content-box">
+                <img src="./asest/IMAGE/div2/1.png" alt="Jewelry Image">
+                <div class="content-overlay">
+                    <h4>Anklets</h4>
+                    <p>8 products</p>
+                </div>
+            </div>
+            <div class="content-box">
+                <img src="./asest/IMAGE/div2/2.png" alt="Jewelry Image">
+
+                <div class="content-overlay">
+                    <h4>Armlets</h4>
+                    <p>8 products</p>
+                </div>
+            </div>
+            <div class="content-box">
+                <img src="./asest/IMAGE/div2/3.png" alt="Jewelry Image">
+                <div class="content-overlay">
+                    <h4>Bracelets</h4>
+                    <p>8 products</p>
+                </div>
+            </div>
+            <div class="content-box">
+                <img src="./asest/IMAGE/div2/4.png" alt="Jewelry Image">
+
+                <div class="content-overlay">
+                    <h4>Earrings</h4>
+                    <p>8 products</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+   
+  
+  
+   
+    <script src="./asest/JS/main.js"></script>
+</body>
+
+</html>
