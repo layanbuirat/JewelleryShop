@@ -894,7 +894,7 @@ document.addEventListener('DOMContentLoaded', function () {
   document.body.insertBefore(newCollectionSection, footer);
 });
 
- 
+
 // our product 
 document.addEventListener('DOMContentLoaded', function () {
   // بداية القسم الجديد
@@ -1162,79 +1162,104 @@ document.addEventListener('DOMContentLoaded', function () {
     discountText.classList.add('sale-discount-text');
     discountText.textContent = item.discount;
     saleOverlay.appendChild(discountText);
-    
+
   });
 
-  // إضافة القسم إلى الصفحة
+  //  قبل ال footeerإضافة القسم إلى الصفحة
   const footer = document.querySelector('.footer');
   document.body.insertBefore(saleCustomSection, footer);
 });
 
-// icon like 
+// like 
+
 document.addEventListener('DOMContentLoaded', function () {
-  // إنشاء القسم الجديد
   const statsSection = document.createElement('div');
   statsSection.classList.add('stat-stats-section');
 
   // تفاصيل المحتوى الخاص بالصف الأول
   const statsDetails = [
     {
-      iconClass: 'fa-solid fa-ring', //يقونة الألبوم
-      title: '84K +',
+      iconClass: 'fa-solid fa-ring',
+      targetNumber: 84000,
       description: 'Jewels in Album',
     },
     {
-      iconClass: 'fa-regular fa-thumbs-up', // أيقونة اللايك
-      title: '10M +',
+      iconClass: 'fa-regular fa-thumbs-up',
+      targetNumber: 10000000,
       description: 'Happy Feedbacks',
     },
     {
-      iconClass: 'fa-solid fa-gem', // أيقونة الجوهرة
-      title: '2K +',
+      iconClass: 'fa-solid fa-gem',
+      targetNumber: 2000,
       description: 'Categories Served',
     },
     {
-      iconClass: 'fa-regular fa-user', // أيقونة المستخدم
-      title: '100M +',
+      iconClass: 'fa-regular fa-user',
+      targetNumber: 100000000,
       description: 'Happy Clients',
     },
   ];
 
-  // إنشاء حاوية الأيقونات
-  const statIconsContainer = document.createElement('div');
-  statIconsContainer.classList.add('stat-icons-container');
-  statsSection.appendChild(statIconsContainer);
-
+  // إنشاء العناصر الداخلية للقسم
   statsDetails.forEach((stat) => {
-    // إنشاء الحاوية لكل أيقونة
-    const statBox = document.createElement('div');
-    statBox.classList.add('stat-stat-box');
+    const statItem = document.createElement('div');
+    statItem.classList.add('stat-item');
 
-    // الأيقونة
-    const statIcon = document.createElement('i');
-    statIcon.classList.add(...stat.iconClass.split(' '));
-    statIcon.style.color = 'gold'; // اللون الذهبي للأيقونة
-    statBox.appendChild(statIcon);
+    const icon = document.createElement('i');
+    icon.className = stat.iconClass;
 
-    // العنوان
-    const statTitle = document.createElement('h2');
-    statTitle.classList.add('stat-stat-title');
-    statTitle.textContent = stat.title;
-    statBox.appendChild(statTitle);
+    const number = document.createElement('span');
+    number.classList.add('stat-number');
+    number.setAttribute('data-target', stat.targetNumber);
+    number.textContent = '0'; // البداية
 
-    // الوصف
-    const statDescription = document.createElement('p');
-    statDescription.classList.add('stat-stat-description');
-    statDescription.textContent = stat.description;
-    statBox.appendChild(statDescription);
+    const description = document.createElement('p');
+    description.textContent = stat.description;
 
-    // إضافة الحاوية إلى حاوية الأيقونات
-    statIconsContainer.appendChild(statBox);
+    statItem.appendChild(icon);
+    statItem.appendChild(number);
+    statItem.appendChild(description);
+    statsSection.appendChild(statItem);
   });
 
   // إضافة القسم إلى الصفحة
   const footer = document.querySelector('.footer');
   document.body.insertBefore(statsSection, footer);
+
+  // وظيفة العد التدريجي
+  const startCounting = (element) => {
+    const target = +element.getAttribute('data-target'); // الرقم المستهدف
+    const increment = Math.ceil(target / 100); // مقدار الزيادة
+    let count = 0;
+
+    const updateCount = () => {
+      count += increment;
+      if (count > target) {
+        element.textContent = target.toLocaleString(); // إظهار الرقم النهائي بتنسيق
+      } else {
+        element.textContent = count.toLocaleString();
+        requestAnimationFrame(updateCount);
+      }
+    };
+
+    updateCount();
+  };
+
+  // مراقبة ظهور القسم
+  const observer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const numbers = entry.target.querySelectorAll('.stat-number');
+          numbers.forEach((number) => startCounting(number));
+          observer.unobserve(entry.target); // إلغاء المراقبة بعد التفعيل
+        }
+      });
+    },
+    { threshold: 0.5 } // القسم يظهر بنسبة 50% على الشاشة
+  );
+
+  observer.observe(statsSection);
 });
 
 // on sale 
@@ -1365,7 +1390,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // إنشاء الحاوية الرئيسية
   const shopGalleryForUser = document.createElement('div');
   shopGalleryForUser.classList.add('shop-gallery-forUser');
-  
+
   // إضافة العنوان "SHOP"
   const shopTitle = document.createElement('h1');
   shopTitle.classList.add('shop-title-forUser');
@@ -1373,7 +1398,7 @@ document.addEventListener('DOMContentLoaded', function () {
   shopTitle.style.fontSize = '10px'; // الخط بحجم 10px
   shopTitle.style.color = 'white';  // لون الخط أبيض
   shopGalleryForUser.appendChild(shopTitle);
-  
+
   // إضافة العنوان "Latest Products"
   const latestProductsTitle = document.createElement('h2');
   latestProductsTitle.classList.add('latest-products-title-forUser');
@@ -1381,7 +1406,7 @@ document.addEventListener('DOMContentLoaded', function () {
   latestProductsTitle.style.fontSize = '30px'; // الخط بحجم 30px
   latestProductsTitle.style.color = 'white';  // لون الخط أبيض
   shopGalleryForUser.appendChild(latestProductsTitle);
-  
+
   // إنشاء السهم الأيسر
   const leftArrowContainerForUser = document.createElement('div');
   leftArrowContainerForUser.classList.add('arrow-container-forUser');
@@ -1389,16 +1414,16 @@ document.addEventListener('DOMContentLoaded', function () {
   leftArrowForUser.classList.add('arrow-left-forUser');
   leftArrowForUser.textContent = '←';
   leftArrowContainerForUser.appendChild(leftArrowForUser);
-  
+
   // إنشاء حاوية الصور
   const shopImagesContainerForUser = document.createElement('div');
   shopImagesContainerForUser.classList.add('shop-images-container-forUser');
-  
+
   // إضافة الصور إلى الحاوية
   const images = [
-    './asest/IMAGE/list/1.png', './asest/IMAGE/list/2.png', './asest/IMAGE/list/3.png', './asest/IMAGE/list/4.png', 
-    './asest/IMAGE/list/6.png', './asest/IMAGE/list/8.png', './asest/IMAGE/list/7.png', './asest/IMAGE/list/5.png', 
-    './asest/IMAGE/list/9.png', './asest/IMAGE/list/10.png', './asest/IMAGE/list/11.png', './asest/IMAGE/list/12.png', 
+    './asest/IMAGE/list/1.png', './asest/IMAGE/list/2.png', './asest/IMAGE/list/3.png', './asest/IMAGE/list/4.png',
+    './asest/IMAGE/list/6.png', './asest/IMAGE/list/8.png', './asest/IMAGE/list/7.png', './asest/IMAGE/list/5.png',
+    './asest/IMAGE/list/9.png', './asest/IMAGE/list/10.png', './asest/IMAGE/list/11.png', './asest/IMAGE/list/12.png',
     './asest/IMAGE/list/13.png'
   ];
 
@@ -1422,10 +1447,10 @@ document.addEventListener('DOMContentLoaded', function () {
   shopGalleryForUser.appendChild(leftArrowContainerForUser);
   shopGalleryForUser.appendChild(shopImagesContainerForUser);
   shopGalleryForUser.appendChild(rightArrowContainerForUser);
-  
+
   // الحصول على الفوتر
   const footerForUser = document.querySelector('.footer');
-  
+
   // إضافة القسم إلى الصفحة قبل الفوتر
   document.body.insertBefore(shopGalleryForUser, footerForUser);
 
@@ -1472,7 +1497,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // إنشاء الحاوية الرئيسية
   const shopGalleryMoreForUser = document.createElement('div');
   shopGalleryMoreForUser.classList.add('shop-gallery-more-forUser');
-  
+
   // إضافة العنوان "SHOP"
   const shopTitleMoreForUser = document.createElement('h1');
   shopTitleMoreForUser.classList.add('shop-title-more-forUser');
@@ -1480,7 +1505,7 @@ document.addEventListener('DOMContentLoaded', function () {
   shopTitleMoreForUser.style.fontSize = '10px'; // الخط بحجم 10px
   shopTitleMoreForUser.style.color = 'white';  // لون الخط أبيض
   shopGalleryMoreForUser.appendChild(shopTitleMoreForUser);
-  
+
   // إضافة العنوان "Latest Products"
   const latestProductsTitleMoreForUser = document.createElement('h2');
   latestProductsTitleMoreForUser.classList.add('latest-products-title-more-forUser');
@@ -1488,7 +1513,7 @@ document.addEventListener('DOMContentLoaded', function () {
   latestProductsTitleMoreForUser.style.fontSize = '30px'; // الخط بحجم 30px
   latestProductsTitleMoreForUser.style.color = 'white';  // لون الخط أبيض
   shopGalleryMoreForUser.appendChild(latestProductsTitleMoreForUser);
-  
+
   // إنشاء السهم الأيسر
   const leftArrowContainerMoreForUser = document.createElement('div');
   leftArrowContainerMoreForUser.classList.add('arrow-container-more-forUser');
@@ -1496,17 +1521,17 @@ document.addEventListener('DOMContentLoaded', function () {
   leftArrowMoreForUser.classList.add('arrow-left-more-forUser');
   leftArrowMoreForUser.textContent = '←';
   leftArrowContainerMoreForUser.appendChild(leftArrowMoreForUser);
-  
+
   // إنشاء حاوية الصور
   const shopImagesContainerMoreForUser = document.createElement('div');
   shopImagesContainerMoreForUser.classList.add('shop-images-container-more-forUser');
-  
+
   // إضافة 20 صورة إلى الحاوية
   const imagesMore = [
-    './asest/IMAGE/moreProduct/1.png', './asest/IMAGE/moreProduct/2.png', './asest/IMAGE/moreProduct/3.png', './asest/IMAGE/moreProduct/4.png', 
-    './asest/IMAGE/moreProduct/5.png', './asest/IMAGE/moreProduct/6.png', './asest/IMAGE/moreProduct/7.png', './asest/IMAGE/moreProduct/8.png', 
-    './asest/IMAGE/moreProduct/9.png', './asest/IMAGE/moreProduct/10.png', './asest/IMAGE/moreProduct/11.png', './asest/IMAGE/moreProduct/12.png', 
-    './asest/IMAGE/moreProduct/13.png', './asest/IMAGE/moreProduct/14.png', './asest/IMAGE/moreProduct/15.png', './asest/IMAGE/moreProduct/16.png', 
+    './asest/IMAGE/moreProduct/1.png', './asest/IMAGE/moreProduct/2.png', './asest/IMAGE/moreProduct/3.png', './asest/IMAGE/moreProduct/4.png',
+    './asest/IMAGE/moreProduct/5.png', './asest/IMAGE/moreProduct/6.png', './asest/IMAGE/moreProduct/7.png', './asest/IMAGE/moreProduct/8.png',
+    './asest/IMAGE/moreProduct/9.png', './asest/IMAGE/moreProduct/10.png', './asest/IMAGE/moreProduct/11.png', './asest/IMAGE/moreProduct/12.png',
+    './asest/IMAGE/moreProduct/13.png', './asest/IMAGE/moreProduct/14.png', './asest/IMAGE/moreProduct/15.png', './asest/IMAGE/moreProduct/16.png',
     './asest/IMAGE/moreProduct/17.png', './asest/IMAGE/moreProduct/18.png', './asest/IMAGE/moreProduct/19.png', './asest/IMAGE/moreProduct/20.png'
   ];
 
@@ -1530,10 +1555,10 @@ document.addEventListener('DOMContentLoaded', function () {
   shopGalleryMoreForUser.appendChild(leftArrowContainerMoreForUser);
   shopGalleryMoreForUser.appendChild(shopImagesContainerMoreForUser);
   shopGalleryMoreForUser.appendChild(rightArrowContainerMoreForUser);
-  
+
   // الحصول على الفوتر
   const footerMoreForUser = document.querySelector('.footer');
-  
+
   // إضافة القسم إلى الصفحة قبل الفوتر
   document.body.insertBefore(shopGalleryMoreForUser, footerMoreForUser);
 
