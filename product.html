@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <title>CRUD with Counter and Product Toggle</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        /* الأساسيات */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            /* تأكد من أن صفحة HTML كاملة تأخذ مساحة ارتفاع الشاشة */
+        }
+
+        main {
+            min-height: 1000vh;
+            /* تعيين الحد الأدنى للارتفاع ليكون حجم الشاشة */
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            /* يمكنك تحديد عرض ثابت أو عرض نسبة */
+            margin: 0 auto;
+            /* جعل المحتوى في المنتصف */
+            padding: 0px;
+            /* المسافة من اليمين واليسار */
+        }
+
+        /*navbar*/
+        .navbar-container {
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px 20px;
+        }
+
+
+        /* Logo Styling */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            /* جعل الشعار في موضع ثابت */
+
+        }
+
+        .logo.small {
+            transform: scale(0.8);
+            /* عشان الشاشات الاصغر*/
+        }
+
+        /* العنصر الأب .address */
+        .address {
+            display: flex;
+            flex-direction: column;
+            /* ترتيب العناصر تحت بعضها */
+            gap: 1px;
+            /* المسافة بين الروابط */
+        }
+
+        /* الرابط الأول */
+        .address a:nth-child(1) {
+            color: #FFD700;
+            /* اللون الذهبي */
+            font-size: 28px;
+            /* حجم الخط للرابط الأول */
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        /* الرابط الثاني */
+        .address a:nth-child(2) {
+            color: #FFD700;
+            /* اللون الذهبي */
+            font-size: 14px;
+            /* حجم الخط للرابط الثاني */
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        /* تأثير عند التمرير بالماوس على الروابط */
+        .address a:hover {
+            color: #ffcc00;
+            /* تغيير اللون عند التمرير */
+            font-size: 28px;
+            /* زيادة حجم الخط */
+        }
+
+        /* إضافة مركزية العناصر */
+        .navbar {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            justify-content: space-between;
+            /*يجعل العناصر في الوسط */
+        }
+
+        /*sign in & up */
+        /* Tooltip */
+        .hidden {
+            display: none;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 400px;
+            max-width: 90%;
+            text-align: center;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #444;
+        }
+
+
+        /* Menu Items (Home, Blog, etc.) */
+        .menu-items {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .menu-items li a {
+            text-decoration: none;
+            color: #c7d3df;
+            padding: 8px 12px;
+            font-size: 1em;
+        }
+
+        .menu-items li a:hover {
+            color: #ffcc00;
+        }
+
+
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            position: relative;
+            margin-right: 20px;
+        }
+
+        .navbar a {
+            color: #fff;
+            padding: 10px;
+            text-decoration: none;
+        }
+
+        .navbar ul ul {
+            display: none;
+            /* إخفاء القوائم الفرعية مبدئيًا */
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #020202;
+            min-width: 150px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+            /* أعلى من القسم */
+
+        }
+
+        .navbar ul li:hover ul {
+            display: block;
+
+        }
+
+        .navbar ul ul li {
+            width: 100%;
+        }
+
+        .navbar ul ul li a {
+            padding: 10px;
+            color: #fff;
+            display: block;
+        }
+
+        .navbar ul ul li a:hover {
+            background-color: #ffcc00;
+            color: #020202;
+        }
+
+        .navbar ul ul li:hover ul {
+            display: block;
+        }
+
+        /* Basic Icon Styles */
+        .icons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5em;
+            color: #f9f7f7;
+        }
+
+        /* تغيير اللون والحجم عند التمرير بالماوس */
+        .icon:hover {
+            color: #FFD700;
+            /* اللون الذهبي */
+            transform: scale(1.2);
+            /* زيادة الحجم عند التمرير */
+        }
+
+        .icon span#cartCounter {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            font-size: 0.7em;
+            padding: 2px 5px;
+            border-radius: 50%;
+        }
+
+        /* footer*/
+        .footer {
+            flex: none;
+            width: 100%;
+            clear: both;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+
+        }
+
+        /* الصف الأول */
+        .footer-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-section {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .footer-logo-section a {
+            font-size: 28px;
+            color: #FFD700;
+        }
+
+        .footer-logo-section p {
+            font-size: 28px;
+            color: #FFD700;
+            ;
+        }
+
+
+        .footer-social-map {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .footer-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-icons .icon {
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .footer-icons .icon:hover {
+            background-color: #FFD700;
+            color: black;
+        }
+
+        /* إعدادات الخريطة */
+        .footer-map iframe {
+            width: 200px;
+            height: 150px;
+            border-radius: 5px;
+            border: 1px solid #444;
+        }
+
+        /* الصف الثاني */
+        .footer-links-row {
+            display: flex;
+            gap: 15px;
+            justify-content: start;
+            margin-bottom: 20px;
+        }
+
+        .footer-links-row a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links-row a:hover {
+            color: #FFD700;
+        }
+
+        /* الصف الثالث */
+        .footer-bottom-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-contact-section,
+        .footer-search-section,
+        .footer-address-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-contact-section i,
+        .footer-search-section i,
+        .footer-address-section i {
+            color: #FFD700;
+            font-size: 20px;
+        }
+
+        .footer-contact-section p,
+        .footer-address-section p {
+            margin: 0;
+        }
+
+        .footer-search-section input {
+            padding: 5px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #222;
+            color: white;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .counter-section,
+        .product-details {
+            margin-top: 20px;
+        }
+
+        .product-details {
+            display: none;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="navbar-container">
+                <!-- Logo -->
+                <div class="logo">
+                    <div class="icon">
+                        <i class="fa-regular fa-gem"></i>
+                    </div>
+                    <div class="address">
+                        <a href="#">LARAMISS</a>
+                        <a href="#">LUXURY PIECES</a>
+                    </div>
+
+                </div>
+
+                <!-- Navbar Menu -->
+                <nav class="navbar">
+                    <ul class="menu-items">
+                        <li><a href="#">Home</a>
+                            <ul class="dropdowm_Home">
+                                <li><a href="product.html">Product Managment</a></li>
+                                <li><a href="#">HomePage 2</a></li>
+                                <li><a href="#">HomePage 3</a></li>
+                                <li><a href="#">HomePage 4</a></li>
+                                <li><a href="#">HomePage 5</a></li>
+                                <li><a href="#">HomePage 6</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="#">Blog</a>
+                            <ul class="dropdowm_Blog">
+                                <li><a href="#">Blog List</a></li>
+                                <li><a href="#">Blog Grid</a></li>
+                                <li><a href="#">Blog Details</a></li>
+                                <li><a href="#">post format</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="#">Feature</a>
+                            <ul class="dropdowm_Featurs">
+                                <li><a href="#">Blog List</a></li>
+                                <li><a href="#">Blog Grid</a></li>
+                                <li><a href="#">Blog Details</a></li>
+                                <li><a href="#">post format</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">page</a>
+                            <ul class="dropdowm_Pages">
+                                <li><a href="#">about</a></li>
+                                <li><a href="#">classification</a></li>
+                                <li><a href="#">Designer Portfolio</a>
+                                    <ul class="dropdown_DesignerPortfolio">
+                                        <li><a href="#">Portfolio</a></li>
+                                        <li><a href="#">Portfolio Details</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Gallery</a>
+                                    <ul class="dropdown_Gallery">
+                                        <li><a href="#">Gallery 1</a></li>
+                                        <li><a href="#">Gallery 2</a></li>
+                                        <li><a href="#">Gallery 3</a></li>
+                                        <li><a href="#">Gallery 4</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Our Team</a></li>
+                                <li><a href="#">404</a></li>
+                                <li><a href="#">Support</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="#">Shop</a>
+                            <ul class="dropdowm_Shope">
+                                <li><a href="#">Shope Archive</a></li>
+                                <li><a href="#">Product Details</a>
+                                    <ul class="dropdown_productDetails">
+                                        <li><a href="#">Style 1</a></li>
+                                        <li><a href="#">Style 2</a></li>
+                                        <li><a href="#">Style 3</a></li>
+                                        <li><a href="#">Style 4</a></li>
+                                    </ul>
+                            </ul>
+                        </li>
+                        <li><a href="#">Reach_out</a>
+                            <ul class="dropdown_Reach_out">
+                                <li><a href="./contact.html">Contact Us</a></li>
+                                <li><a href="#">Contact Us2</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                    <!-- User Icon with Modal Trigger -->
+                    <!-- User Icon with Redirection -->
+                    <div class="icon user-icon" onclick="redirectToCustomerPage()">
+                        <i class="fa-regular fa-user"></i>
+                        <div id="accountTooltip" class="tooltip">My Account</div>
+                    </div>
+
+                    <!-- Search Icon with Search Modal -->
+                    <div class="icon search-icon" onclick="toggleSearchModal()">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <div id="searchTooltip" class="tooltip">بحث</div>
+                    </div>
+
+                    <!-- Hamburger Menu Icon with Sidebar -->
+                    <div class="icon menu-icon" onclick="toggleSidebar()">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+
+                    <!-- Shopping Cart Icon with Counter -->
+                    <div class="icon cart-icon">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span id="cartCounter">0</span>
+                    </div>
+            </div>
+            </nav>
+
+        </div>
+    </header>
+    <h2>Product Management</h2>
+    <form id="productForm">
+        <input type="hidden" id="productId" />
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <input type="text" id="description" required>
+        </div>
+        <div>
+            <label for="price">Price:</label>
+            <input type="number" id="price" min="0" required>
+        </div>
+        <div>
+            <label for="category">Category:</label>
+            <input type="text" id="category" required>
+        </div>
+        <button type="submit">Save</button>
+    </form>
+    <h3>Product List</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="productList"></tbody>
+    </table>
+
+    <!-- Counter Section -->
+    <div class="counter-section">
+        <h3>Counter</h3>
+        <p>Counter: <span id="counter">0</span></p>
+        <button id="increaseCounter">Increase number of new product</button>
+    </div>
+
+    <!-- Product Details Toggle Section -->
+    <div class="product-details">
+        <h3>Jewelry shope Details</h3>
+        <p><strong>Name:</strong>LARAMISS</p>
+        <p><strong>Price:</strong> Rang price :from 100$ to 1000$</p>
+        <p><strong>Description:</strong> This NEW Jewelry created in 2025.</p>
+    </div>
+    <button id="toggleProductDetails">Show Details of shope</button>
+</body>
+<script src="main.js"></script>
+
+</html>

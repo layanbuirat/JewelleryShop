@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/signup.css">
+</head>
+<body>
+    <header>
+        <!-- Same header as contact.html -->
+    </header>
+
+    <!-- Sign Up Form -->
+    <div class="full-image-section">
+        <div class="title-overlay">
+            <h1>Sign Up</h1>
+        </div>
+        <div class="breadcrumbs">
+            <span>Home</span> > <span>Sign Up</span>
+        </div>
+    </div>
+
+    <div class="form-section">
+        <form id="signupForm">
+            <div class="input-group">
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" placeholder="Enter your full name" required>
+                    <span class="error-message"></span>
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-envelope"></i>
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                    <span class="error-message"></span>
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                    <span class="error-message"></span>
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                    <span class="error-message"></span>
+                </div>
+            </div>
+            <button type="submit" class="submit-button">SIGN UP</button>
+        </form>
+        <p>Already have an account? <a href="signin.html">Sign In</a></p>
+    </div>
+
+    <footer>
+        <!-- Same footer as contact.html -->
+    </footer>
+
+    <script src="./js/signup.js"></script>
+</body>
+</html>

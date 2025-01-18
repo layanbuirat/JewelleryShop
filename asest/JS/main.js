@@ -85,6 +85,12 @@ function toggleSidebar() {
   const sidebar = document.getElementById('sidebar');
   sidebar.style.display = sidebar.style.display === 'block' ? 'none' : 'block';
 }
+//fuction of sign up & sign in 
+function redirectToCustomerPage() {
+  // Redirection to the customer page
+  window.location.href = "customer.html"; // اسم صفحة العميل الجديدة
+}
+
 
 // Update Cart Counter
 let cartCount = 0;

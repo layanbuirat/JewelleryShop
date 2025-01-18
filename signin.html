@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/signin.css">
+</head>
+<body>
+    <header>
+        <!-- Same header as contact.html -->
+        <div class="container">
+            <div class="navbar-container">
+                <div class="logo">
+                    <div class="icon">
+                        <i class="fa-regular fa-gem"></i>
+                    </div>
+                    <div class="address">
+                        <a href="#">LARAMISS</a>
+                        <a href="#">LUXURY PIECES</a>
+                    </div>
+                </div>
+                <nav class="navbar">
+                    <ul class="menu-items">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Feature</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">Reach Out</a></li>
+                    </ul>
+                    <div class="icons">
+                        <div class="icon user-icon">
+                            <i class="fa-regular fa-user"></i>
+                        </div>
+                        <div class="icon search-icon">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <div class="icon cart-icon">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span id="cartCounter">0</span>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sign In Form -->
+    <div class="full-image-section">
+        <div class="title-overlay">
+            <h1>Sign In</h1>
+        </div>
+        <div class="breadcrumbs">
+            <span>Home</span> > <span>Sign In</span>
+        </div>
+    </div>
+
+    <div class="form-section">
+        <form id="signinForm">
+            <div class="input-group">
+                <div class="input-field">
+                    <i class="fas fa-envelope"></i>
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                    <span class="error-message"></span>
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                    <span class="error-message"></span>
+                </div>
+            </div>
+            <button type="submit" class="submit-button">SIGN IN</button>
+        </form>
+        <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+    </div>
+
+    <footer>
+        <!-- Same footer as contact.html -->
+    </footer>
+
+    <script src="./js/signin.js"></script>
+</body>
+</html>
