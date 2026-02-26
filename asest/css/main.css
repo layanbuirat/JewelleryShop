@@ -2121,3 +2121,21 @@ button:focus {
     background-color: #222;
     color: white;
   }
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  .navbar {
+    flex-direction: column;
+  }
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
